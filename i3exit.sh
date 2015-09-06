@@ -13,16 +13,16 @@ case "$1" in
 		i3-msg exit
 		;;
 	suspend)
-		gksu pm-suspend
+		systemctl suspend
 		;;
 	hibernate)
-		lock && dbus-send --system --print-reply --dest="org.freedesktop.ConsoleKit" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Hibernate
+		lock && systemctl hibernate
 		;;
 	reboot)
-		dbus-send --system --print-reply --dest="org.freedesktop.ConsoleKit" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Restart
+		systemctl reboot
 		;;
 	shutdown)
-		dbus-send --system --print-reply --dest="org.freedesktop.ConsoleKit" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop
+		systemctl poweroff
 		;;
 	*)
 	echo "Usage: $0 {lock|logout|suspend|hibernate|reboot|shutdown}"
